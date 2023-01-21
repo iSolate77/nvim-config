@@ -3,6 +3,9 @@ if not ok then
 	return
 end
 
+require("neodev").setup()
+require("fidget").setup()
+
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
@@ -24,6 +27,11 @@ lsp.configure("sumneko_lua", {
 			},
 		},
 	},
+})
+
+lsp.configure("tailwindcss", {
+  single_file_support = true,
+  root_dir = require('lspconfig').util.root_pattern('tailwind.config.js', 'tailwind.config.ts', 'postcss.config.js', 'postcss.config.ts', 'package.json', 'node_modules', '.git')
 })
 
 lsp.ensure_installed({
@@ -54,8 +62,8 @@ lsp.set_preferences({
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-	["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-	["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
+	["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+	["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
 	["<C-d>"] = cmp.mapping.scroll_docs(-4),
 	["<C-f>"] = cmp.mapping.scroll_docs(4),
 	["<C-e>"] = cmp.mapping.close(),
@@ -73,6 +81,7 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 -- this helps with copilot setup
 cmp_mappings["<Tab>"] = nil
 cmp_mappings["<S-Tab>"] = nil
+cmp_mappings["<CR>"] = nil
 
 lsp.setup_nvim_cmp({
 	sources = {
@@ -145,7 +154,26 @@ local rust_lsp = lsp.build_options("rust_analyzer", {
   }
 })
 
+
+lsp.nvim_workspace()
+
 lsp.setup()
+
+vim.diagnostic.config({
+	virtual_text = true,
+	signs = true,
+	update_in_insert = false,
+	underline = true,
+	severity_sort = false,
+	float = {
+		focusable = true,
+		style = "minimal",
+		border = "rounded",
+		source = "always",
+		header = "",
+		prefix = "",
+	},
+})
 
 require("rust-tools").setup({ server = rust_lsp })
 require('lspconfig').html.setup({
