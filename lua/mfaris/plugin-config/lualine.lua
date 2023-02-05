@@ -9,7 +9,7 @@ local lualine_scheme = "darkplus_dark"
 
 local status_theme_ok, theme = pcall(require, "lualine.themes." .. lualine_scheme)
 if not status_theme_ok then
-  return
+	return
 end
 
 local function contains(t, value)
@@ -35,18 +35,18 @@ local yellow_orange = "#D7BA7D"
 local purple = "#C586C0"
 
 if lualine_scheme == "darkplus_dark" then
-  -- gray = "#3e3e3e"
-  gray = "#303030"
-  dark_gray = "#303030"
-  red = "#bf616a"
-  blue = "#5e81ac"
-  indent = "#A3BE8C"
-  green = "#A3BE8C"
-  cyan = "#88c0d0"
-  orange = "#C68A75"
-  yellow = "#DCDCAA"
-  yellow_orange = "#D7BA7D"
-  purple = "#B48EAD"
+	-- gray = "#3e3e3e"
+	gray = "#303030"
+	dark_gray = "#303030"
+	red = "#bf616a"
+	blue = "#5e81ac"
+	indent = "#A3BE8C"
+	green = "#A3BE8C"
+	cyan = "#88c0d0"
+	orange = "#C68A75"
+	yellow = "#DCDCAA"
+	yellow_orange = "#D7BA7D"
+	purple = "#B48EAD"
 end
 
 -- local sl_hl = vim.api.nvim_get_hl_by_name("StatusLine", true)
@@ -137,17 +137,17 @@ local right_pad_alt = {
 }
 
 local mode = {
-  -- mode component
-  function()
-    -- return "▊"
-    return " "
-    -- return "  "
-  end,
-  color = function()
-    -- auto change color according to neovims mode
-    return { fg = mode_color[vim.fn.mode()], bg = gray }
-  end,
-  padding = 0,
+	-- mode component
+	function()
+		-- return "▊"
+		return " "
+		-- return "  "
+	end,
+	color = function()
+		-- auto change color according to neovims mode
+		return { fg = mode_color[vim.fn.mode()], bg = gray }
+	end,
+	padding = 0,
 }
 
 local hide_in_width_60 = function()
@@ -184,13 +184,11 @@ local diff = {
 	separator = "%#SLSeparator#" .. "│ " .. "%*",
 }
 
-
 local filetype = {
 	"filetype",
 	fmt = function(str)
 		local ui_filetypes = {
 			"help",
-			"packer",
 			"neogitstatus",
 			"NvimTree",
 			"Trouble",
@@ -294,7 +292,6 @@ local spaces = function()
 
 	local ui_filetypes = {
 		"help",
-		"packer",
 		"neogitstatus",
 		"NvimTree",
 		"Trouble",
@@ -325,7 +322,6 @@ local lanuage_server = {
 		local buf_ft = vim.bo.filetype
 		local ui_filetypes = {
 			"help",
-			"packer",
 			"neogitstatus",
 			"NvimTree",
 			"Trouble",

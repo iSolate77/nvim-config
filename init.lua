@@ -1,21 +1,47 @@
-require("mfaris.lsp.lspconfig")
-require("mfaris.plugins")
-require("mfaris.keymaps")
-require("mfaris.options")
-require("mfaris.colourscheme")
-require("mfaris.plugin-config")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+vim.g.mapleader = " "
 
-require('lspkind').init({
-	symbol_map = {
-		Copilot = " ",
-	},
+require("lazy").setup('mfaris', {
+  ui = {
+    icons = {
+      cmd = "⌘",
+      config = "🛠",
+      event = "📅",
+      ft = "📂",
+      init = "⚙",
+      keys = "🗝",
+      plugin = "🔌",
+      runtime = "💻",
+      source = "📄",
+      start = "🚀",
+      task = "📌",
+    },
+  },
 })
 
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+require('mfaris.plugin-config.autocommands')
+require('settings.keymaps')
+require('settings.options')
+-- require("mfaris.lsp.lspconfig")
+-- require("mfaris.plugins")
+-- require("mfaris.keymaps")
+-- require("mfaris.options")
+-- require("mfaris.colourscheme")
+-- require("mfaris.plugin-config")
 
 require("mason.settings").set({
 	ui = {
 		border = "rounded",
 	},
 })
-
