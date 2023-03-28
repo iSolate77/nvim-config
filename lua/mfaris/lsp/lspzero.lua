@@ -99,10 +99,10 @@ cmp_mappings["<CR>"] = nil
 
 lsp.setup_nvim_cmp({
   sources = {
+    { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "copilot" },
     { name = "path" },
-    { name = "nvim_lsp" },
     { name = "nvim_lsp_signature_help" },
     { name = "luasnip" },
     { name = "buffer", keyword_length = 5 },
@@ -128,6 +128,11 @@ lsp.setup_nvim_cmp({
         nvim_lsp_signature_help = "[LSP Signature]",
       },
     }),
+  },
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
   },
   mapping = cmp_mappings,
 })

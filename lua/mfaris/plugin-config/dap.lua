@@ -28,7 +28,7 @@ require('mason-nvim-dap').setup{
   ensure_installed = {'cpptools', 'debugpy', 'node-debug2-adapter'},
 }
 
-require('mason-nvim-dap').setup_handlers()
+--[[ require('mason-nvim-dap').setup_handlers() ]]
 --[[ dap_install.setup {} ]]
 --[[]]
 --[[ dap_install.config("python", {}) ]]

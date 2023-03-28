@@ -10,9 +10,10 @@ return {
 
 	-- Misc
 	"JoosepAlviste/nvim-ts-context-commentstring",
-	"kyazdani42/nvim-web-devicons",
+	{"kyazdani42/nvim-web-devicons", lazy = true},
 	{
 		"akinsho/bufferline.nvim",
+    event = "BufWinEnter",
 		config = function()
 			require("mfaris.plugin-config.bufferline")
 		end,
