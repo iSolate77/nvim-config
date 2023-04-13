@@ -77,4 +77,10 @@ return {
 			{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "undotree" },
 		},
 	},
+  {
+    "andweeb/presence.nvim",
+    config = function()
+      require("mfaris.plugin-config.presence")
+    end,
+  },
 }
