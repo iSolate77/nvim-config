@@ -3,7 +3,6 @@ if not status_ok then
   return
 end
 
-print("Setting up bufferline")
 bufferline.setup{
   options = {
     close_command = "Bdelete! %d", -- can be a string | function, see "Mouse actions"
@@ -13,7 +12,7 @@ bufferline.setup{
   },
   highlights = {
     fill = {
-      fg = { attribute = "fg", highlight = "#ff0000" },
+      fg = "#ff0000",
       bg = { attribute = "bg", highlight = "TabLine" },
     },
     background = {

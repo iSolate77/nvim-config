@@ -33,7 +33,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Clear highlights
-keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+-- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
 
 -- Better paste
@@ -45,6 +45,7 @@ keymap('n', 'x', '"_x')
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
+keymap("i", "kj", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -65,8 +66,6 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 keymap("n", "<leader>e", ":Lex<CR>:vertical resize 30<CR>", opts)
--- Git
-keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Comment
 keymap("n", "<leader>/", require('Comment.api').toggle.linewise.current, opts)
@@ -78,3 +77,6 @@ keymap("n", "<C-h>", "<Cmd>NavigatorLeft<CR>", opts)
 keymap("n", "<C-j>", "<Cmd>NavigatorDown<CR>", opts)
 keymap("n", "<C-k>", "<Cmd>NavigatorUp<CR>", opts)
 keymap("n", "<C-l>", "<Cmd>NavigatorRight<CR>", opts)
+
+keymap("n", "<leader>bj", "<Cmd>BufferLinePick<CR>", opts)
+keymap("n", "<leader>bc", "<Cmd>BufferLinePickClose<CR>", opts)

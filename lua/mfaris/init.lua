@@ -9,7 +9,7 @@ return {
 	"lunarvim/darkplus.nvim",
 
 	-- Misc
-	"JoosepAlviste/nvim-ts-context-commentstring",
+	{"JoosepAlviste/nvim-ts-context-commentstring", lazy = true},
 	{"kyazdani42/nvim-web-devicons", lazy = true},
 	{
 		"akinsho/bufferline.nvim",
