@@ -5,7 +5,7 @@ if not status_ok then
 end
 
 local lualine_scheme = "darkplus_dark"
--- local lualine_scheme = "onedarker_alt"
+--local lualine_scheme = "catpuccin"
 
 local status_theme_ok, theme = pcall(require, "lualine.themes." .. lualine_scheme)
 if not status_theme_ok then
@@ -22,7 +22,6 @@ local function contains(t, value)
 end
 
 local gray = "#32363e"
-local dark_gray = "#282C34"
 local dark_gray = "#282C34"
 local red = "#D16969"
 local blue = "#569CD6"
@@ -253,7 +252,7 @@ local branch = {
 
 local progress = {
 	"progress",
-	fmt = function(str)
+	fmt = function()
 		-- return "▊"
 		return hl_str("", "SLSep") .. hl_str("%P/%L", "SLProgress") .. hl_str(" ", "SLSep")
 		-- return "  "
@@ -344,7 +343,7 @@ local lanuage_server = {
 			end
 		end
 
-		local clients = vim.lsp.buf_get_clients()
+		local clients = vim.lsp.get_active_clients()
 		local client_names = {}
 		local copilot_active = false
 

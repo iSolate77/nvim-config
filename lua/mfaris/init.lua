@@ -9,11 +9,11 @@ return {
 	"lunarvim/darkplus.nvim",
 
 	-- Misc
-	{"JoosepAlviste/nvim-ts-context-commentstring", lazy = true},
-	{"kyazdani42/nvim-web-devicons", lazy = true},
+	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+	{ "kyazdani42/nvim-web-devicons", lazy = true },
 	{
 		"akinsho/bufferline.nvim",
-    event = "BufWinEnter",
+		event = "BufWinEnter",
 		config = function()
 			require("mfaris.plugin-config.bufferline")
 		end,
@@ -77,10 +77,10 @@ return {
 			{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "undotree" },
 		},
 	},
-  {
-    "andweeb/presence.nvim",
-    config = function()
-      require("mfaris.plugin-config.presence")
-    end,
-  },
+	{
+		"andweeb/presence.nvim",
+		config = function()
+			require("mfaris.plugin-config.presence")
+		end,
+	},
 }
