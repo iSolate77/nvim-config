@@ -1,7 +1,6 @@
 local keymap = vim.keymap.set
 -- Silent keymap option
-local opts = { silent = true },
-
+local opts = { silent = true }
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 
@@ -35,12 +34,11 @@ keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 -- Clear highlights
 -- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
-
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
 -- Do not yank with x
-keymap('n', 'x', '"_x')
+keymap("n", "x", '"_x')
 
 -- Insert --
 -- Press jk fast to enter
@@ -68,9 +66,8 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>e", ":Lex<CR>:vertical resize 30<CR>", opts)
 
 -- Comment
-keymap("n", "<leader>/", require('Comment.api').toggle.linewise.current, opts)
+keymap("n", "<leader>/", require("Comment.api").toggle.linewise.current, opts)
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.blockwise(vim.fn.visualmode())<CR>')
-
 
 -- Tmux NAV
 keymap("n", "<C-h>", "<Cmd>NavigatorLeft<CR>", opts)
