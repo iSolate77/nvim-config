@@ -12,7 +12,6 @@ keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
-
 local dap_status_ok, dap = pcall(require, "dap")
 if not dap_status_ok then
   return
@@ -23,12 +22,13 @@ if not dap_ui_status_ok then
   return
 end
 
-require('mason-nvim-dap').setup{
+require("mason-nvim-dap").setup({
   automatic_setup = true,
-  ensure_installed = {'cpptools', 'debugpy', 'node-debug2-adapter'},
-}
+  handlers = {},
+  ensure_installed = { "codelldb", "debugpy", "node-debug2-adapter" },
+})
 
---[[ require('mason-nvim-dap').setup_handlers() ]]
+-- require('mason-nvim-dap').setup_handlers()
 --[[ dap_install.setup {} ]]
 --[[]]
 --[[ dap_install.config("python", {}) ]]
@@ -51,26 +51,26 @@ require('mason-nvim-dap').setup{
 --[[   }, ]]
 --[[ } ]]
 --[[]]
-dap.adapters.cppdbg = {
-  id = 'cppdbg',
-  type = 'executable',
-  command = '/Users/mohdfaris/.local/share/nvim/mason/bin/OpenDebugAD7',
-}
-
-dap.configurations.cpp = {
-  {
-    name = "Launch file",
-    type = "cppdbg",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopAtEntry = true,
-  }
-}
-dap.configurations.rust = dap.configurations.cpp
-dap.configurations.c = dap.configurations.cpp
+-- dap.adapters.cppdbg = {
+--   id = 'cppdbg',
+--   type = 'executable',
+--   command = '/Users/mohdfaris/.local/share/nvim/mason/bin/OpenDebugAD7',
+-- }
+--
+-- dap.configurations.cpp = {
+--   {
+--     name = "Launch file",
+--     type = "cppdbg",
+--     request = "launch",
+--     program = function()
+--       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--     end,
+--     cwd = '${workspaceFolder}',
+--     stopAtEntry = true,
+--   }
+-- }
+-- dap.configurations.rust = dap.configurations.cpp
+-- dap.configurations.c = dap.configurations.cpp
 --[[]]
 --[[ dap.adapters.node2 = { ]]
 --[[   type = 'executable', ]]
@@ -96,24 +96,23 @@ dap.configurations.c = dap.configurations.cpp
 --[[     processId = require'dap.utils'.pick_process, ]]
 --[[   }, ]]
 --[[ } ]]
-
-dapui.setup {
+dapui.setup({
   layouts = {
     {
       elements = {
-        'scopes',
-        'breakpoints',
+        "scopes",
+        "breakpoints",
       },
       size = 0.25,
-      position = 'right',
+      position = "right",
     },
     {
       elements = {
-        'repl',
-        'console',
+        "repl",
+        "console",
       },
       size = 10,
-      position = 'bottom',
+      position = "bottom",
     },
   },
   --[[ sidebar = { ]]
@@ -130,7 +129,7 @@ dapui.setup {
   --[[ tray = { ]]
   --[[   elements = {}, ]]
   --[[ }, ]]
-}
+})
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
