@@ -28,74 +28,6 @@ require("mason-nvim-dap").setup({
   ensure_installed = { "codelldb", "debugpy", "node-debug2-adapter" },
 })
 
--- require('mason-nvim-dap').setup_handlers()
---[[ dap_install.setup {} ]]
---[[]]
---[[ dap_install.config("python", {}) ]]
---[[ -- add other configs here ]]
---[[]]
---[[ dap.adapters.python = { ]]
---[[   type = 'executable'; ]]
---[[   command = '/Users/mohdfaris/.local/share/nvim/mason/packages/debugpy/venv/bin/python3.10'; ]]
---[[   args = { '-m', 'debugpy.adapter' }; ]]
---[[ } ]]
---[[ dap.configurations.python = { ]]
---[[   { ]]
---[[     type = 'python'; ]]
---[[     request = 'launch'; ]]
---[[     name = "Launch file"; ]]
---[[     program = "${file}"; ]]
---[[     pythonPath = function() ]]
---[[       return '/opt/homebrew/bin/python3' ]]
---[[     end; ]]
---[[   }, ]]
---[[ } ]]
---[[]]
--- dap.adapters.cppdbg = {
---   id = 'cppdbg',
---   type = 'executable',
---   command = '/Users/mohdfaris/.local/share/nvim/mason/bin/OpenDebugAD7',
--- }
---
--- dap.configurations.cpp = {
---   {
---     name = "Launch file",
---     type = "cppdbg",
---     request = "launch",
---     program = function()
---       return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
---     end,
---     cwd = '${workspaceFolder}',
---     stopAtEntry = true,
---   }
--- }
--- dap.configurations.rust = dap.configurations.cpp
--- dap.configurations.c = dap.configurations.cpp
---[[]]
---[[ dap.adapters.node2 = { ]]
---[[   type = 'executable', ]]
---[[   command = 'node', ]]
---[[   args = {'/Users/mohdfaris/.local/share/nvim/mason/packages/node-debug2-adapter/out/src/nodeDebug.js'}, ]]
---[[ } ]]
---[[ dap.configurations.javascript = { ]]
---[[   { ]]
---[[     name = 'Launch', ]]
---[[     type = 'node2', ]]
---[[     request = 'launch', ]]
---[[     program = '${file}', ]]
---[[     cwd = vim.fn.getcwd(), ]]
---[[     sourceMaps = true, ]]
---[[     protocol = 'inspector', ]]
---[[     console = 'integratedTerminal', ]]
---[[   }, ]]
---[[   { ]]
---[[     -- For this to work you need to make sure the node process is started with the `--inspect` flag. ]]
---[[     name = 'Attach to process', ]]
---[[     type = 'node2', ]]
---[[     request = 'attach', ]]
---[[     processId = require'dap.utils'.pick_process, ]]
---[[   }, ]]
---[[ } ]]
 dapui.setup({
   layouts = {
     {
@@ -115,20 +47,6 @@ dapui.setup({
       position = "bottom",
     },
   },
-  --[[ sidebar = { ]]
-  --[[   elements = { ]]
-  --[[     { ]]
-  --[[       id = "scopes", ]]
-  --[[       size = 0.25, -- Can be float or integer > 1 ]]
-  --[[     }, ]]
-  --[[     { id = "breakpoints", size = 0.25 }, ]]
-  --[[   }, ]]
-  --[[   size = 40, ]]
-  --[[   position = "right", -- Can be "left", "right", "top", "bottom" ]]
-  --[[ }, ]]
-  --[[ tray = { ]]
-  --[[   elements = {}, ]]
-  --[[ }, ]]
 })
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
