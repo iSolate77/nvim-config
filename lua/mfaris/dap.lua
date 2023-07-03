@@ -11,6 +11,7 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-telescope/telescope-dap.nvim",
       "jayp0521/mason-nvim-dap.nvim",
+      "leoluz/nvim-dap-go",
     },
   },
 }
