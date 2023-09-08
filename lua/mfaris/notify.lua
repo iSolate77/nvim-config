@@ -16,7 +16,7 @@ return {
           return
         end
 
-        require "notify"(msg, level, opts)
+        require "notify" (msg, level, opts)
       end
     end,
     cond = function()

@@ -1,77 +1,89 @@
 return {
-  "nvim-lua/plenary.nvim", -- Useful lua functions used by lots of plugins
-  -- LSP
-  "rafamadriz/friendly-snippets",
-  "iamcco/markdown-preview.nvim",
+  -- Git related plugins
+  "tpope/vim-fugitive",
+  "tpope/vim-rhubarb",
 
-  -- Colorscheme
---[[   { "catppuccin/nvim",                             name = "catppuccin" }, ]]
-  "folke/tokyonight.nvim",
-  "lunarvim/darkplus.nvim",
-
-  -- Misc
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-  { "kyazdani42/nvim-web-devicons",                lazy = true },
-  {
-    "akinsho/bufferline.nvim",
-    event = "BufWinEnter",
-    config = function()
-      require("mfaris.plugin-config.bufferline")
-    end,
-  },
-  "moll/vim-bbye",
-  -- use("akinsho/toggleterm.nvim")
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("mfaris.plugin-config.project")
-    end,
-  },
-  {
-    "lewis6991/impatient.nvim",
-    config = function()
-      require("mfaris.plugin-config.impatient")
-    end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("mfaris.plugin-config.indentline")
-    end,
-  },
-  {
-    "goolord/alpha-nvim",
-    config = function()
-      require("mfaris.plugin-config.alpha")
-    end,
-  },
-  -- use("ggandor/leap.nvim")
-  "tpope/vim-repeat",
-
-  -- QoL
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
-  },
-  {
-    "RRethy/vim-illuminate",
-    config = function()
-      require("mfaris.plugin-config.illuminate")
-    end,
-  },
-  "hrsh7th/cmp-nvim-lsp-signature-help",
-  "simrat39/rust-tools.nvim",
+  -- Detect tabstop and shiftwidth automatically
+  "tpope/vim-sleuth",
   {
     "numToStr/Navigator.nvim",
     config = function()
       require("Navigator").setup()
     end,
   },
+
+  -- Copilot
+  {
+    "zbirenbaum/copilot.lua",
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          erase_after_cursor = true,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<M-CR>",
+          },
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = false,
+          debounce = 75,
+          keymap = {
+            accept = "<M-l>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        filetypes = {
+          help = false,
+          gitcommit = false,
+          gitrebase = false,
+          hgcommit = false,
+          svn = false,
+          cvs = false,
+          ["."] = false,
+        },
+        copilot_node_command = "node", -- Node.js version must be > 16.x
+        server_opts_overrides = {},
+      })
+    end,
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup({
+        clear_after_cursor = true,
+      })
+    end,
+  },
+
+  {
+    "RRethy/vim-illuminate",
+    config = function()
+      vim.g.Illuminate_ftblacklist = { "alpha", "NvimTree" }
+      vim.api.nvim_set_keymap(
+        "n",
+        "<a-n>",
+        '<cmd>lua require"illuminate".next_reference{wrap=true}<cr>',
+        { noremap = true }
+      )
+      vim.api.nvim_set_keymap(
+        "n",
+        "<a-p>",
+        '<cmd>lua require"illuminate".next_reference{reverse=true,wrap=true}<cr>',
+        { noremap = true }
+      )
+    end,
+  },
+
   {
     "mbbill/undotree",
     keys = {
@@ -82,6 +94,32 @@ return {
     "andweeb/presence.nvim",
     config = function()
       require("mfaris.plugin-config.presence")
+    end,
+  },
+
+  "tpope/vim-fugitive",
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup()
+    end,
+  },
+
+  "tpope/vim-repeat",
+  "moll/vim-bbye",
+  "lunarvim/darkplus.nvim",
+  {
+    "simrat39/inlay-hints.nvim",
+    config = function()
+      require("inlay-hints").setup()
+    end,
+  },
+
+  {
+    "simrat39/rust-tools.nvim",
+    config = function()
+      require("rust-tools").setup({})
     end,
   },
 }

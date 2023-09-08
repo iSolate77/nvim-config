@@ -2,7 +2,22 @@ return {
   {
     "numToStr/Comment.nvim",
     config = function()
-      require('mfaris.plugin-config.comment')
+      require('Comment').setup {
+        opleader = {
+          line = "gc",
+          block = "gb",
+        },
+
+        mappings = {
+          basic = true,
+          extra = true,
+        },
+
+        toggler = {
+          line = "gcc",
+          block = "gbc",
+        },
+      }
     end,
   },
 }

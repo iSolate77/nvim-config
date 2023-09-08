@@ -66,8 +66,8 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>e", ":Lex<CR>:vertical resize 30<CR>", opts)
 
 -- Comment
-keymap("n", "<leader>/", require("Comment.api").toggle.linewise.current, opts)
-keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.blockwise(vim.fn.visualmode())<CR>')
+-- keymap("n", "<leader>/", require("Comment.api").toggle.linewise.current, opts)
+-- keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.blockwise(vim.fn.visualmode())<CR>')
 
 -- Tmux NAV
 keymap("n", "<C-h>", "<Cmd>NavigatorLeft<CR>", opts)

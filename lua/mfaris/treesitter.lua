@@ -9,11 +9,6 @@ return {
 			require("mfaris.plugin-config.treesitter")
 			require("mfaris.plugin-config.treesitter-context")
 		end,
+		build = "TSUpdate",
 	},
-	--[[ { ]]
-	--[[ 	"nvim-treesitter/nvim-treesitter-context", ]]
-	--[[ 	config = function() ]]
-	--[[ 	end, ]]
-	--[[ }, ]]
-	--[[ "nvim-treesitter/nvim-treesitter-textobjects", ]]
 }
