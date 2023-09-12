@@ -3,11 +3,11 @@ return {
     "rcarriga/nvim-notify",
     lazy = false,
     config = function()
-      local log = require("plenary.log").new {
+      local log = require("plenary.log").new({
         plugin = "notify",
         level = "debug",
         use_console = false,
-      }
+      })
 
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.notify = function(msg, level, opts)
@@ -16,7 +16,7 @@ return {
           return
         end
 
-        require "notify" (msg, level, opts)
+        require("notify")(msg, level, opts)
       end
     end,
     cond = function()

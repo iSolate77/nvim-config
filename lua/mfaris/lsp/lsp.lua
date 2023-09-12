@@ -110,6 +110,25 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
+-- vim.diagnostic.set({
+-- 	diagnostics = {
+-- 		signs = {
+-- 			error = "",
+-- 			warn = "",
+-- 			hint = "",
+-- 			info = "",
+-- 		},
+-- 	},
+-- })
+
+vim.diagnostic.config({
+	signs = {
+		error = "",
+		warn = "",
+		hint = "",
+		info = "",
+	},
+})
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,

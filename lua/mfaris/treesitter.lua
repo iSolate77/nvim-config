@@ -9,6 +9,6 @@ return {
 			require("mfaris.plugin-config.treesitter")
 			require("mfaris.plugin-config.treesitter-context")
 		end,
-		build = "TSUpdate",
+		build = ":TSUpdate",
 	},
 }
