@@ -60,6 +60,7 @@ lsp.ensure_installed({
 	"tsserver",
 	"tailwindcss",
 	"emmet_ls",
+  "gopls",
 })
 
 lsp.set_preferences({
@@ -107,7 +108,6 @@ lsp.setup_nvim_cmp({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "copilot" },
 		{ name = "path" },
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "luasnip" },
@@ -129,7 +129,6 @@ lsp.setup_nvim_cmp({
 				nvim_lsp = "[LSP]",
 				nvim_lua = "[API]",
 				luasnip = "[Snip]",
-				copilot = "[Copilot]",
 				path = "[Path]",
 				nvim_lsp_signature_help = "[LSP Signature]",
 			},
@@ -149,11 +148,13 @@ lsp.on_attach(function(client, bufnr)
 	keymap("n", "K", vim.lsp.buf.hover, opts)
 	keymap("n", "gd", vim.lsp.buf.definition, opts)
 	keymap("n", "gD", vim.lsp.buf.declaration, opts)
-	keymap("n", "gi", vim.lsp.buf.implementation, opts)
+	--[[ keymap("n", "gi", vim.lsp.buf.implementation, opts) ]]
+	keymap("n", "gi", require("telescope.builtin").lsp_implementations, opts)
 	keymap("n", "gr", require("telescope.builtin").lsp_references, opts)
 	keymap("n", "<leader>lf", vim.lsp.buf.format, opts)
 	keymap("n", "<leader>li", "<cmd>LspInfo<cr>", opts)
 	keymap("n", "<leader>lI", "<cmd>Mason<cr>", opts)
+	keymap("n", "<leader>ld", require("telescope.builtin").diagnostics, opts)
 	keymap("n", "<leader>la", vim.lsp.buf.code_action, opts)
 	keymap("n", "<leader>lj", vim.diagnostic.goto_next, opts)
 	keymap("n", "<leader>lk", vim.diagnostic.goto_prev, opts)
@@ -162,6 +163,8 @@ lsp.on_attach(function(client, bufnr)
 	keymap("n", "<leader>lq", vim.diagnostic.setloclist, opts)
 	keymap("n", "<leader>lt", "<cmd>lua vim.diagnostic.config({ virtual_text = true })<CR>", opts)
 	keymap("n", "<leader>tl", "<cmd>lua vim.diagnostic.config({ virtual_text = false })<CR>", opts)
+  keymap("n", "<leader>ds", require("telescope.builtin").lsp_document_symbols, opts)
+  keymap("n", "<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, opts)
 
 	local status_ok, illuminate = pcall(require, "illuminate")
 	if not status_ok then

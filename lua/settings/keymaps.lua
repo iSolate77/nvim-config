@@ -77,3 +77,10 @@ keymap("n", "<C-l>", "<Cmd>NavigatorRight<CR>", opts)
 
 keymap("n", "<leader>bj", "<Cmd>BufferLinePick<CR>", opts)
 keymap("n", "<leader>bc", "<Cmd>BufferLinePickClose<CR>", opts)
+
+keymap(
+	"n",
+	"<leader><space>",
+	"<CMD>lua require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown({ windblend = 10, previewer = false }))<CR>",
+	opts
+)
