@@ -2,6 +2,7 @@ local ok, lspkind = pcall(require, "lspkind")
 if not ok then
 	return
 end
+
 lspkind.config = function()
 	require("lspkind").init({
 		symbol_map = {
@@ -13,6 +14,7 @@ lspkind.config = function()
 end
 
 local cmp = require("cmp")
+lspkind.config()
 local cmp_select = { behavior = cmp.SelectBehavior.Insert }
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
