@@ -31,15 +31,15 @@ local servers = {
 
 	tailwindcss = {
 		single_file_support = true,
-		root_dir = require("lspconfig").util.root_pattern(
-			"tailwind.config.js",
-			"tailwind.config.ts",
-			"postcss.config.js",
-			"postcss.config.ts",
-			"package.json",
-			"node_modules",
-			".git"
-		),
+		-- root_dir = require("lspconfig.util").root_pattern(
+		-- 	"tailwind.config.js",
+		-- 	"tailwind.config.ts",
+		-- 	"postcss.config.js",
+		-- 	"postcss.config.ts",
+		-- 	"package.json",
+		-- 	"node_modules",
+		-- 	".git"
+		-- ),
 	},
 
 	gopls = {},
@@ -121,14 +121,6 @@ mason_lspconfig.setup_handlers({
 -- 	},
 -- })
 
-vim.diagnostic.config({
-	signs = {
-		error = "",
-		warn = "",
-		hint = "",
-		info = "",
-	},
-})
 vim.diagnostic.config({
 	virtual_text = true,
 	signs = true,
