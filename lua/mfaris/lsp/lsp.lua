@@ -6,6 +6,7 @@ require("neodev").setup({
 	lspconfig = true,
 	pathStrict = true,
 })
+
 require("fidget").setup()
 
 local servers = {
@@ -120,10 +121,15 @@ mason_lspconfig.setup_handlers({
 -- 		},
 -- 	},
 -- })
+local signs = { Error = "", Warning = "", Hint = "", Information = "" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 vim.diagnostic.config({
 	virtual_text = true,
-	signs = true,
+	signs = { active = signs },
 	update_in_insert = false,
 	underline = true,
 	severity_sort = false,
