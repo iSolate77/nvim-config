@@ -96,8 +96,6 @@ return {
 			require("mfaris.plugin-config.presence")
 		end,
 	},
-
-	"tpope/vim-fugitive",
 	{
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -107,8 +105,7 @@ return {
 	},
 
 	"tpope/vim-repeat",
-	"moll/vim-bbye",
-	"lunarvim/darkplus.nvim",
+	-- "moll/vim-bbye",
 	{
 		"simrat39/inlay-hints.nvim",
 		config = function()
@@ -123,13 +120,12 @@ return {
 		end,
 	},
 	{
-		"unblevable/quick-scope",
-		init = function()
-			vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
-			vim.cmd([[
-				highlight QuickScopePrimary guifg='#7aa2f7' gui=underline
-				highlight QuickScopeSecondary guifg='#f7768e' gui=underline
-			]])
+		"jinh0/eyeliner.nvim",
+		config = function()
+			require("eyeliner").setup({
+				highlight_on_key = true,
+				dim = false,
+			})
 		end,
 	},
 }

@@ -26,10 +26,10 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
--- Close buffers
-keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
+-- keymap("n", "<S-l>", ":bnext<CR>", opts)
+-- keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- -- Close buffers
+-- keymap("n", "<S-q>", "<cmd>Bdelete!<CR>", opts)
 
 -- Clear highlights
 -- keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
@@ -75,5 +75,4 @@ keymap("n", "<C-j>", "<Cmd>NavigatorDown<CR>", opts)
 keymap("n", "<C-k>", "<Cmd>NavigatorUp<CR>", opts)
 keymap("n", "<C-l>", "<Cmd>NavigatorRight<CR>", opts)
 
-keymap("n", "<leader>bj", "<Cmd>BufferLinePick<CR>", opts)
-keymap("n", "<leader>bc", "<Cmd>BufferLinePickClose<CR>", opts)
+keymap("n", "<leader>b", "<Cmd>Telescope buffers<CR>", opts)
