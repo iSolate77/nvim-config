@@ -55,7 +55,6 @@ local servers = {
 	tsserver = {},
 	html = {},
 }
-
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
@@ -121,7 +120,7 @@ mason_lspconfig.setup_handlers({
 -- 		},
 -- 	},
 -- })
-local signs = { Error = "", Warning = "", Hint = "", Information = "" }
+local signs = { Error = "", Warning = " ", Hint = "", Information = "" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -150,3 +149,9 @@ vim.diagnostic.config({
 --   info = "",
 -- },
 --
+local rt = require("rust-tools")
+rt.setup({
+	server = {
+		on_attach = on_attach,
+	},
+})

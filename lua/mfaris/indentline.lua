@@ -1,5 +1,6 @@
 return {
 	"lukas-reineke/indent-blankline.nvim",
+	version = "2.20.8",
 	config = function()
 		local status_ok, indent_blankline = pcall(require, "indent_blankline")
 		if not status_ok then
