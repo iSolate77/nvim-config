@@ -63,7 +63,7 @@ keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
-keymap("n", "<leader>e", ":Lex<CR>:vertical resize 30<CR>", opts)
+keymap("n", "<leader>e", ":Vex<CR>:vertical resize 25<CR>", opts)
 
 -- Comment
 -- keymap("n", "<leader>/", require("Comment.api").toggle.linewise.current, opts)

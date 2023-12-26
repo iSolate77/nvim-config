@@ -1,4 +1,14 @@
 return {
+	{
+		"almahoozi/repl.nvim",
+		config = function()
+			require("repl").setup({
+				Mappings = {
+					Run = "<leader><cr>",
+				},
+			})
+		end,
+	},
 	-- Git related plugins
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",

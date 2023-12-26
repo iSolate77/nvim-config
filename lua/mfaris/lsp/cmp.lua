@@ -16,7 +16,11 @@ end
 local cmp = require("cmp")
 lspkind.config()
 local cmp_select = { behavior = cmp.SelectBehavior.Insert }
-local luasnip = require("luasnip")
+local ok1, luasnip = pcall(require, "luasnip")
+if not ok1 then
+	print("help me, I've crashed")
+	return
+end
 require("luasnip.loaders.from_vscode").lazy_load()
 luasnip.config.setup({})
 

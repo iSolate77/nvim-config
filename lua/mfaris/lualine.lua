@@ -8,6 +8,7 @@ return {
       theme = "tokyonight",
       component_separators = "|",
       section_separators = "",
+      path = 1,
     },
   },
 

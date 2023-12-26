@@ -9,7 +9,7 @@ vim.opt.ignorecase = true                                      -- ignore case in
 vim.opt.mouse = "a"                                            -- allow the mouse to be used in neovim
 vim.opt.pumheight = 10                                         -- pop up menu height
 vim.opt.showmode = false                                       -- we don't need to see things like -- INSERT -- anymore
-vim.opt.showtabline = 0                                        -- always show tabs
+vim.opt.showtabline = 0                                        -- never show tabs
 vim.opt.smartcase = true                                       -- smart case
 vim.opt.smartindent = true                                     -- make indenting smarter again
 vim.opt.relativenumber = true                                  -- turn on relative line numbering
@@ -30,15 +30,16 @@ vim.opt.number = true                                          -- set numbered l
 vim.opt.laststatus = 3
 vim.opt.showcmd = false
 vim.opt.ruler = false
-vim.opt.numberwidth = 4    -- set number column width to 2 {default 4}
+vim.opt.numberwidth = 4 -- set number column width to 2 {default 4}
 vim.opt.signcolumn = "yes"
-vim.opt.wrap = false       -- display lines as one long line
-vim.opt.scrolloff = 8      -- is one of my fav
+vim.opt.wrap = false    -- display lines as one long line
+vim.opt.scrolloff = 8   -- is one of my fav
 vim.opt.sidescrolloff = 8
 vim.opt.fillchars = { eob = "~" }
-vim.opt.shortmess:append { c = true }
+vim.opt.shortmess:append({ c = true })
 vim.opt.whichwrap:append("<,>,[,],h,l")
 vim.opt.iskeyword:append("-")
-vim.g.netrw_browse_split = 0
+vim.g.netrw_broptwse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+vim.opt.colorcolumn = "80"
