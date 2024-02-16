@@ -1,12 +1,3 @@
-require("neodev").setup({
-	override = function(_, library)
-		library.enabled = true
-		library.plugins = true
-	end,
-	lspconfig = true,
-	pathStrict = true,
-})
-
 require("fidget").setup()
 
 local servers = {
