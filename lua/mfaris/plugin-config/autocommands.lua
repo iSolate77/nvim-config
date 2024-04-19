@@ -42,3 +42,9 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 		vim.highlight.on_yank({ higroup = "Visual", timeout = 250 })
 	end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+	callback = function()
+		vim.lsp.buf.format()
+	end,
+})
