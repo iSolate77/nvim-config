@@ -21,15 +21,6 @@ local servers = {
 
 	tailwindcss = {
 		single_file_support = true,
-		-- root_dir = require("lspconfig.util").root_pattern(
-		-- 	"tailwind.config.js",
-		-- 	"tailwind.config.ts",
-		-- 	"postcss.config.js",
-		-- 	"postcss.config.ts",
-		-- 	"package.json",
-		-- 	"node_modules",
-		-- 	".git"
-		-- ),
 	},
 
 	gopls = {},
@@ -42,7 +33,7 @@ local servers = {
 		},
 	},
 	tsserver = {},
-	html = {},
+	-- html = {},
 }
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
