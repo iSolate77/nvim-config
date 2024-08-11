@@ -1,17 +1,11 @@
-local ok, lspkind = pcall(require, "lspkind")
-if not ok then
-	return
-end
+local lspkind = require("lspkind")
+lspkind.init({
+	symbol_map = {
+		Copilot = "",
+	},
+})
 
--- lspkind.config = function()
--- 	require("lspkind").init({
--- 		symbol_map = {
--- 			Copilot = " ",
--- 		},
--- 	})
---
--- 	vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
--- end
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
 
 local cmp = require("cmp")
 -- lspkind.config()
@@ -36,7 +30,7 @@ cmp.setup({
 		["<C-d>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-e>"] = cmp.mapping.close(),
-		["<C-y>"] = cmp.mapping.confirm({select = true}),
+		["<C-y>"] = cmp.mapping.confirm({ select = true }),
 		["<C-space>"] = cmp.mapping.complete(),
 		["<Tab>"] = nil,
 		["<S-Tab>"] = nil,
@@ -47,8 +41,9 @@ cmp.setup({
 		{ name = "nvim_lsp_signature_help" },
 		{ name = "nvim_lua" },
 		{ name = "path" },
+		{ name = "copilot" },
 		{ name = "luasnip" },
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "buffer",                 keyword_length = 5 },
 	},
 	window = {
 		completion = cmp.config.window.bordered(),
@@ -67,6 +62,7 @@ cmp.setup({
 				nvim_lsp_signature_help = "[LSP Signature]",
 				buffer = "[Buf]",
 				luasnip = "[Snip]",
+				copilot = "[Copilot]",
 				path = "[Path]",
 			},
 		}),
