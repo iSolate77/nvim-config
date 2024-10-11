@@ -1,5 +1,11 @@
 return {
     {
+        "echasnovski/mini.ai",
+        config = function()
+            require("mini.ai").setup()
+        end,
+    },
+    {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -66,6 +72,7 @@ return {
                     hgcommit = false,
                     svn = false,
                     cvs = false,
+                    go = false,
                     ["."] = false,
                 },
                 copilot_node_command = "node", -- Node.js version must be > 16.x
@@ -127,7 +134,12 @@ return {
     {
         "stevearc/oil.nvim",
         config = function()
-            require("oil").setup()
+            require("oil").setup({
+                skip_confirm_for_simple_edits = true,
+                view_options = {
+                    show_hidden = true,
+                },
+            })
         end,
     },
 }

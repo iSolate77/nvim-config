@@ -26,46 +26,8 @@ return {
 		require("conform").setup({
 			formatters_by_ft = {
 				toml = {
-					{
-						exe = "prettierd",
-						args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-					},
-				},
-				python = {
-					{
-						exe = "black",
-						args = { "--fast" },
-					},
-				},
-				lua = {
-					{
-						exe = "stylua",
-					},
-				},
-				sql = {
-					{
-						exe = "sqlfmt",
-					},
-				},
-			},
-			linters_by_ft = {
-				python = {
-					{
-						exe = "flake8",
-					},
-				},
-				markdown = {
-					{
-						exe = "write-good",
-					},
-					{
-						exe = "misspell",
-					},
-				},
-				sql = {
-					{
-						exe = "sqlfluff",
-					},
+					"prettierd",
+					args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 				},
 			},
 			format_on_save = {

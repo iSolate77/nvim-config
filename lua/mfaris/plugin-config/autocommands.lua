@@ -9,15 +9,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
--- Remove statusline and tabline when in Alpha
-vim.api.nvim_create_autocmd({ "User" }, {
-	pattern = { "AlphaReady" },
-	callback = function()
-		vim.cmd([[
-		      set showtabline=0 | autocmd BufUnload <buffer> set showtabline=0
-		      set laststatus=0 | autocmd BufUnload <buffer> set laststatus=3
-		    ]])
-	end,
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "man",
+	command = "nnoremap <buffer> q :quit<CR>",
 })
 
 -- Set wrap and spell in markdown and gitcommit

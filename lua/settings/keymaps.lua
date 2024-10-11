@@ -75,3 +75,5 @@ keymap("n", "<C-k>", "<Cmd>NavigatorUp<CR>", opts)
 keymap("n", "<C-l>", "<Cmd>NavigatorRight<CR>", opts)
 
 keymap("n", "<leader>b", "<Cmd>Telescope buffers<CR>", opts)
+
+keymap("n", "<leader><leader>c", ":e ~/.config/nvim/init.lua <CR>", opts)

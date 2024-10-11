@@ -32,7 +32,7 @@ local servers = {
 			},
 		},
 	},
-	tsserver = {},
+	ts_ls = {},
 	-- html = {},
 }
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
@@ -95,16 +95,6 @@ mason_lspconfig.setup_handlers({
 	end,
 })
 
--- vim.diagnostic.set({
--- 	diagnostics = {
--- 		signs = {
--- 			error = "",
--- 			warn = "",
--- 			hint = "",
--- 			info = "",
--- 		},
--- 	},
--- })
 local signs = { Error = "", Warning = " ", Hint = "", Information = "" }
 for type, icon in pairs(signs) do
 	local hl = "DiagnosticSign" .. type
@@ -127,13 +117,6 @@ vim.diagnostic.config({
 	},
 })
 
--- sign_icons = {
---   error = "",
---   warn = "",
---   hint = "",
---   info = "",
--- },
---
 local rt = require("rust-tools")
 rt.setup({
 	server = {
