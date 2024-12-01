@@ -30,10 +30,10 @@ return {
 					args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
 				},
 			},
-			format_on_save = {
-				timeout = 500,
-				lsp_fallback = true,
-			},
+			-- format_on_save = {
+			-- 	timeout = 500,
+			-- 	lsp_fallback = true,
+			-- },
 		})
 	end,
 }
