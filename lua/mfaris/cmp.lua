@@ -1,27 +1,59 @@
 return {
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "onsails/lspkind-nvim" },
-      {
-        "saadparwaiz1/cmp_luasnip",
-        dependencies = {
-          "L3MON4D3/LuaSnip",
-          version = "v2.*",
-          build = "make install_jsregexp"
-        }
+  'saghen/blink.cmp',
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    'giuxtaposition/blink-cmp-copilot',
+  },
+  version = "*",
+  opts = {
+    keymap = { preset = 'default' },
+    sources = {
+      default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          score_offset = 100,
+        },
+        copilot = {
+          name = 'copilot',
+          module = 'blink-cmp-copilot',
+          score_offset = -1,
+          async = true,
+          transform_items = function(_, items)
+            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+            local kind_idx = #CompletionItemKind + 1
+            CompletionItemKind[kind_idx] = "Copilot"
+            for _, item in ipairs(items) do
+              item.kind = kind_idx
+            end
+            return items
+          end,
+        },
       },
-      { "tamago324/cmp-zsh" },
-      { "hrsh7th/cmp-nvim-lsp-signature-help" },
-      { 'rafamadriz/friendly-snippets' },
-
     },
-    config = function()
-      require("mfaris.lsp.cmp")
-    end,
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = 'mono',
+      kind_icons = { Copilot = '' },
+    },
+    signature = { enabled = true },
+    completion = {
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+        treesitter_highlighting = true,
+        window = { border = 'rounded' },
+      },
+      menu = {
+        auto_show = function(ctx)
+          return ctx.mode ~= "cmdline" or not vim.tbl_contains({ '/', '?' }, vim.fn.getcmdtype())
+        end,
+        draw = {
+          treesitter = { 'lsp' }
+        },
+        border = 'rounded',
+      },
+    },
   },
 }
