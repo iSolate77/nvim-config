@@ -28,10 +28,7 @@ return {
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
     {
-        "numToStr/Navigator.nvim",
-        config = function()
-            require("Navigator").setup({})
-        end,
+        "christoomey/vim-tmux-navigator",
     },
 
     -- "github/copilot.vim",
