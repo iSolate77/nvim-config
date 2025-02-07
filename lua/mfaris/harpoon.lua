@@ -16,7 +16,7 @@ return {
 		-- Keybindings for navigation between marked files
 		local navKeys = { "h", "j", "k", "l" }
 		for idx, key in ipairs(navKeys) do
-			vim.keymap.set("n", "<leader><leader>" .. key, function()
+			vim.keymap.set("n", "<leader>h" .. key, function()
 				harpoon:list():select(idx)
 			end, { noremap = true, silent = true })
 		end

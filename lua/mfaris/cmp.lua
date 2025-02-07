@@ -24,7 +24,6 @@ return {
             local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
             local kind_idx = #CompletionItemKind + 1
             CompletionItemKind[kind_idx] = "Copilot"
-            print("Hello from config")
             for _, item in ipairs(items) do
               item.kind = kind_idx
             end

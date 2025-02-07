@@ -53,10 +53,6 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
 
--- Move text
-keymap("x", "<C-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<C-k>", ":move '<-2<CR>gv-gv", opts)
-
 -- Telescope
 -- keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 -- keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
@@ -67,12 +63,12 @@ keymap("x", "<C-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<leader>cn", "<CMD>cnext<CR>", opts)
 keymap("n", "<leader>cp", "<CMD>cprev<CR>", opts)
 
-keymap("n", "<leader>e", "<CMD>Oil<CR>", opts)
+-- keymap("n", "<leader>e", ":lua MiniFiles.open()<CR>", opts)
 
 -- Comment
 -- keymap("n", "<leader>/", require("Comment.api").toggle.linewise.current, opts)
 -- keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.blockwise(vim.fn.visualmode())<CR>')
 
-keymap("n", "<leader>b", "<Cmd>Telescope buffers<CR>", opts)
+-- keymap("n", "<leader>b", "<Cmd>Telescope buffers<CR>", opts)
 
-keymap("n", "<leader><leader>c", ":e ~/.config/nvim/init.lua <CR>", opts)
+-- keymap("n", "<leader><leader>c", ":e ~/.config/nvim/init.lua <CR>", opts)

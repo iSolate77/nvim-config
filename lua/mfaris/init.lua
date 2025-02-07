@@ -1,29 +1,23 @@
 return {
     {
-        "echasnovski/mini.ai",
-        config = function()
-            require("mini.ai").setup()
-        end,
-    },
-    {
         "folke/todo-comments.nvim",
         event = "VimEnter",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = { signs = false },
     },
-    {
-        "almahoozi/repl.nvim",
-        config = function()
-            require("repl").setup({
-                Mappings = {
-                    Run = "<leader><cr>",
-                },
-            })
-        end,
-    },
+    -- {
+    --     "almahoozi/repl.nvim",
+    --     config = function()
+    --         require("repl").setup({
+    --             Mappings = {
+    --                 Run = "<leader><cr>",
+    --             },
+    --         })
+    --     end,
+    -- },
     -- Git related plugins
-    "tpope/vim-fugitive",
-    "tpope/vim-rhubarb",
+    -- "tpope/vim-fugitive",
+    -- "tpope/vim-rhubarb",
 
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
@@ -99,26 +93,26 @@ return {
             require("mfaris.plugin-config.presence")
         end,
     },
-    {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        config = function()
-            require("nvim-surround").setup()
-        end,
-    },
+    -- {
+    --     "kylechui/nvim-surround",
+    --     version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --     config = function()
+    --         require("nvim-surround").setup()
+    --     end,
+    -- },
 
     "tpope/vim-repeat",
     -- "moll/vim-bbye",
-    {
-        "simrat39/inlay-hints.nvim",
-        config = function()
-            require("inlay-hints").setup()
-        end,
-    },
-
-    {
-        "simrat39/rust-tools.nvim",
-    },
+    -- {
+    --     "simrat39/inlay-hints.nvim",
+    --     config = function()
+    --         require("inlay-hints").setup()
+    --     end,
+    -- },
+    --
+    -- {
+    --     "simrat39/rust-tools.nvim",
+    -- },
     {
         "jinh0/eyeliner.nvim",
         config = function()
@@ -128,15 +122,15 @@ return {
             })
         end,
     },
-    {
-        "stevearc/oil.nvim",
-        config = function()
-            require("oil").setup({
-                skip_confirm_for_simple_edits = true,
-                view_options = {
-                    show_hidden = true,
-                },
-            })
-        end,
-    },
+    -- {
+    --     "stevearc/oil.nvim",
+    --     config = function()
+    --         require("oil").setup({
+    --             skip_confirm_for_simple_edits = true,
+    --             view_options = {
+    --                 show_hidden = true,
+    --             },
+    --         })
+    --     end,
+    -- },
 }
