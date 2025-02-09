@@ -18,6 +18,8 @@ return {
     scope = { enabled = true },
     -- scroll = { enabled = true },
     statuscolumn = { enabled = true },
+    toggle = { enabled = false },
+    terminal = { enabled = false },
     -- words = { enabled = true },
   },
   keys = {
@@ -54,8 +56,7 @@ return {
     { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
     { "<leader>sc",      function() Snacks.picker.command_history() end,                         desc = "Command History" },
     { "<leader>sC",      function() Snacks.picker.commands() end,                                desc = "Commands" },
-    { "<leader>sd",      function() Snacks.picker.diagnostics() end,                             desc = "Diagnostics" },
-    { "<leader>sD",      function() Snacks.picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
+    { "<leader>sd",      function() Snacks.picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
     { "<leader>sh",      function() Snacks.picker.help() end,                                    desc = "Help Pages" },
     { "<leader>sH",      function() Snacks.picker.highlights() end,                              desc = "Highlights" },
     { "<leader>si",      function() Snacks.picker.icons() end,                                   desc = "Icons" },
