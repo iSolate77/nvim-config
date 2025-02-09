@@ -13,6 +13,9 @@ return {
     },
     settings = {
         Lua = {
+            diagnostics = {
+                globals = { 'vim', 'snacks' },
+            },
             hint = { enable = true },
             runtime = { version = "LuaJIT" },
             workspace = {
