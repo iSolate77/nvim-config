@@ -14,7 +14,7 @@ return {
     settings = {
         Lua = {
             diagnostics = {
-                globals = { 'vim', 'snacks' },
+                globals = { 'vim', 'Snacks' },
             },
             hint = { enable = true },
             runtime = { version = "LuaJIT" },
