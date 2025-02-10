@@ -2,7 +2,8 @@ vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = t
 	{ desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
 	{ desc = "Go to next diagnostic message" })
-vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end,
+	{ desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
