@@ -2,7 +2,23 @@ return {
   'saghen/blink.cmp',
   dependencies = {
     'rafamadriz/friendly-snippets',
-    'giuxtaposition/blink-cmp-copilot',
+    {
+      "supermaven-inc/supermaven-nvim",
+      dependencies = {
+        {
+          'saghen/blink.compat',
+          version = '*',
+          opts = {
+            impersonate_nvim_cmp = true,
+            debug = true,
+          }
+        },
+      },
+      opts = {
+        disable_inline_completion = true, -- disables inline completion for use with cmp
+        disable_keymaps = true,           -- disables built in keymaps for more manual control
+      },
+    },
     {
       'folke/lazydev.nvim',
       ft = 'lua', -- only load on lua files
@@ -17,22 +33,27 @@ return {
   opts = {
     keymap = { preset = 'default' },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot" },
+      default = { "lazydev", "lsp", "path", "snippets", "buffer", "supermaven" },
       providers = {
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           score_offset = 100,
         },
-        copilot = {
-          name = 'copilot',
-          module = 'blink-cmp-copilot',
-          score_offset = -1,
+        -- copilot = {
+        --   name = 'copilot',
+        --   module = 'blink-cmp-copilot',
+        --   score_offset = -1,
+        --   async = true,
+        -- },
+        supermaven = {
+          name = "supermaven",
+          module = "blink.compat.source",
           async = true,
           transform_items = function(_, items)
             local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
             local kind_idx = #CompletionItemKind + 1
-            CompletionItemKind[kind_idx] = "Copilot"
+            CompletionItemKind[kind_idx] = "SuperMaven"
             for _, item in ipairs(items) do
               item.kind = kind_idx
             end
@@ -44,7 +65,7 @@ return {
     appearance = {
       use_nvim_cmp_as_default = true,
       nerd_font_variant = 'mono',
-      kind_icons = { Copilot = '' },
+      kind_icons = { SuperMaven = '' },
     },
     signature = { enabled = true },
     completion = {
@@ -63,6 +84,9 @@ return {
         },
         border = 'rounded',
       },
+      -- list = {
+      --   selection = { preselect = true, auto_insert = false },
+      -- },
     },
   },
 }

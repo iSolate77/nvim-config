@@ -53,4 +53,5 @@ vim.lsp.enable({
 	'luals',
 	'gopls',
 	'clangd',
+	'zls',
 })
