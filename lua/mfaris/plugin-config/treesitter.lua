@@ -21,11 +21,11 @@ local swap_next, swap_prev = (function()
 end)()
 
 configs.setup({
-  ensure_installed = { "c", "go", "rust", "python", "html", "javascript", "typescript", "lua" }, -- one of "all" or a list of languages
-  ignore_install = { "" },                                               -- List of parsers to ignore installing
+  ensure_installed = { "c", "go", "rust", "python", "html", "javascript", "typescript", "lua", "zig", "proto" }, -- one of "all" or a list of languages
+  ignore_install = { "" },                                                                                       -- List of parsers to ignore installing
   highlight = {
-    enable = true,                                                       -- false will disable the whole extension
-    disable = { "" },                                                    -- list of language that will be disabled
+    enable = true,                                                                                               -- false will disable the whole extension
+    disable = { "" },                                                                                            -- list of language that will be disabled
   },
   autopairs = {
     enable = true,
@@ -35,10 +35,10 @@ configs.setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = "<M-w>",  -- maps in normal mode to init the node/scope selection
-      node_incremental = "<M-w>", -- increment to the upper named parent
+      init_selection = "<M-w>",     -- maps in normal mode to init the node/scope selection
+      node_incremental = "<M-w>",   -- increment to the upper named parent
       node_decremental = "<M-C-w>", -- decrement to the previous node
-      scope_incremental = "<M-e>", -- increment to the upper scope (as defined in locals.scm)
+      scope_incremental = "<M-e>",  -- increment to the upper scope (as defined in locals.scm)
     },
   },
   context_commentstring = {
@@ -48,6 +48,7 @@ configs.setup({
     enable_autocmd = false,
     config = {
       c = "// %s",
+      go = "// %s",
       lua = "-- %s",
     },
   },
@@ -84,8 +85,8 @@ configs.setup({
         ["ic"] = "@conditional.inner",
         ["aa"] = "@parameter.outer",
         ["ia"] = "@parameter.inner",
-        ["av"] = "@variable.outer",
-        ["iv"] = "@variable.inner",
+        -- ["av"] = "@variable.outer",
+        -- ["iv"] = "@variable.inner",
       },
     },
     swap = {

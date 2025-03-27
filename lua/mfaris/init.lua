@@ -16,61 +16,57 @@ return {
     --     end,
     -- },
     -- Git related plugins
-    -- "tpope/vim-fugitive",
-    -- "tpope/vim-rhubarb",
+    "tpope/vim-fugitive",
 
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
-    {
-        "christoomey/vim-tmux-navigator",
-    },
 
     -- "github/copilot.vim",
     -- Copilot
-    {
-        "zbirenbaum/copilot.lua",
-        event = "InsertEnter",
-        config = function()
-            require("copilot").setup({
-                panel = {
-                    enabled = true,
-                    auto_refresh = false,
-                    erase_after_cursor = true,
-                    keymap = {
-                        jump_prev = "[[",
-                        jump_next = "]]",
-                        accept = "<CR>",
-                        refresh = "gr",
-                        open = "<M-CR>",
-                    },
-                },
-                suggestion = {
-                    enabled = true,
-                    auto_trigger = false,
-                    debounce = 75,
-                    keymap = {
-                        accept = "<M-l>",
-                        accept_word = false,
-                        accept_line = false,
-                        next = "<M-]>",
-                        prev = "<M-[>",
-                        dismiss = "<C-]>",
-                    },
-                },
-                filetypes = {
-                    help = false,
-                    gitcommit = false,
-                    gitrebase = false,
-                    hgcommit = false,
-                    svn = false,
-                    cvs = false,
-                    ["."] = false,
-                },
-                copilot_node_command = "node",
-                server_opts_overrides = {},
-            })
-        end,
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup({
+    --             panel = {
+    --                 enabled = true,
+    --                 auto_refresh = false,
+    --                 erase_after_cursor = true,
+    --                 keymap = {
+    --                     jump_prev = "[[",
+    --                     jump_next = "]]",
+    --                     accept = "<CR>",
+    --                     refresh = "gr",
+    --                     open = "<M-CR>",
+    --                 },
+    --             },
+    --             suggestion = {
+    --                 enabled = true,
+    --                 auto_trigger = false,
+    --                 debounce = 75,
+    --                 keymap = {
+    --                     accept = "<M-l>",
+    --                     accept_word = false,
+    --                     accept_line = false,
+    --                     next = "<M-]>",
+    --                     prev = "<M-[>",
+    --                     dismiss = "<C-]>",
+    --                 },
+    --             },
+    --             filetypes = {
+    --                 help = false,
+    --                 gitcommit = false,
+    --                 gitrebase = false,
+    --                 hgcommit = false,
+    --                 svn = false,
+    --                 cvs = false,
+    --                 ["."] = false,
+    --             },
+    --             copilot_node_command = "node",
+    --             server_opts_overrides = {},
+    --         })
+    --     end,
+    -- },
     -- {
     --     "zbirenbaum/copilot-cmp",
     --     config = function()
@@ -122,15 +118,32 @@ return {
             })
         end,
     },
-    -- {
-    --     "stevearc/oil.nvim",
-    --     config = function()
-    --         require("oil").setup({
-    --             skip_confirm_for_simple_edits = true,
-    --             view_options = {
-    --                 show_hidden = true,
-    --             },
-    --         })
-    --     end,
-    -- },
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        ---@type Flash.Config
+        opts = {},
+        -- stylua: ignore
+        keys = {
+            { "<c-n>", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+            { "<c-x>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+        }
+    },
+    {
+        "stevearc/oil.nvim",
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        config = function()
+            require("oil").setup({
+                columns = { "icon", "permissions" },
+                skip_confirm_for_simple_edits = true,
+                view_options = {
+                    show_hidden = true,
+                },
+            })
+            vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { silent = true })
+        end,
+    },
 }

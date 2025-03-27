@@ -23,33 +23,33 @@ return {
       require("mini.move").setup(
         {
           mappings = {
-            left = '<C-h>',
-            right = '<C-l>',
-            down = '<C-j>',
-            up = '<C-k>',
+            left = '<M-h>',
+            right = '<M-l>',
+            down = '<M-j>',
+            up = '<M-k>',
           },
         })
     end
   },
-  {
-    'echasnovski/mini.files',
-    keys = {
-      {
-        "<leader>e",
-        function()
-          local mini_files = require("mini.files")
-          if not mini_files.close() then mini_files.open(vim.api.nvim_buf_get_name(0), true) end
-        end,
-        desc = "Open mini.files current working file",
-      },
-    },
-    config = function()
-      require("mini.files").setup({
-        mappings = {
-          go_in = 'L',
-          go_in_plus = 'l',
-        },
-      })
-    end
-  },
+  -- {
+  --   'echasnovski/mini.files',
+  --   keys = {
+  --     {
+  --       "<leader>e",
+  --       function()
+  --         local mini_files = require("mini.files")
+  --         if not mini_files.close() then mini_files.open(vim.api.nvim_buf_get_name(0), true) end
+  --       end,
+  --       desc = "Open mini.files current working file",
+  --     },
+  --   },
+  --   config = function()
+  --     require("mini.files").setup({
+  --       mappings = {
+  --         go_in = 'L',
+  --         go_in_plus = 'l',
+  --       },
+  --     })
+  --   end
+  -- },
 }
