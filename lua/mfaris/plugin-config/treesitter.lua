@@ -48,6 +48,7 @@ configs.setup({
     enable_autocmd = false,
     config = {
       c = "// %s",
+      go = "// %s",
       lua = "-- %s",
     },
   },
@@ -84,8 +85,8 @@ configs.setup({
         ["ic"] = "@conditional.inner",
         ["aa"] = "@parameter.outer",
         ["ia"] = "@parameter.inner",
-        ["av"] = "@variable.outer",
-        ["iv"] = "@variable.inner",
+        -- ["av"] = "@variable.outer",
+        -- ["iv"] = "@variable.inner",
       },
     },
     swap = {

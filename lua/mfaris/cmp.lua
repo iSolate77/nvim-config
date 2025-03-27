@@ -3,17 +3,15 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     {
+      'saghen/blink.compat',
+      version = '*',
+      opts = {
+        impersonate_nvim_cmp = true,
+        debug = true,
+      }
+    },
+    {
       "supermaven-inc/supermaven-nvim",
-      dependencies = {
-        {
-          'saghen/blink.compat',
-          version = '*',
-          opts = {
-            impersonate_nvim_cmp = true,
-            debug = true,
-          }
-        },
-      },
       opts = {
         disable_inline_completion = true, -- disables inline completion for use with cmp
         disable_keymaps = true,           -- disables built in keymaps for more manual control
@@ -84,9 +82,9 @@ return {
         },
         border = 'rounded',
       },
-      -- list = {
-      --   selection = { preselect = true, auto_insert = false },
-      -- },
+      list = {
+        selection = { preselect = true, auto_insert = false },
+      },
     },
   },
 }
