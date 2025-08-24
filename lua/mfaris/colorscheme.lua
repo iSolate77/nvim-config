@@ -10,6 +10,7 @@ return {
 	-- "folke/tokyonight.nvim",
 	-- catpuccin
 	"catppuccin/nvim",
+	version = "*",
 	-- lazy = false,
 	-- priority = 1000,
 	config = function()

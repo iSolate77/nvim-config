@@ -13,16 +13,10 @@ return {
     },
     settings = {
         Lua = {
-            diagnostics = {
-                globals = { 'vim', 'Snacks' },
-            },
             hint = { enable = true },
-            runtime = { version = "LuaJIT" },
             workspace = {
-                checkThirdParty = false,
                 library = {
-                    vim.env.VIMRUNTIME,
-                    "${3rd}/luv/library",
+                    vim.api.nvim_get_runtime_file("", true),
                 },
             },
         },
