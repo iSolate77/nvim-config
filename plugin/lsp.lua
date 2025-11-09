@@ -7,7 +7,7 @@ vim.keymap.set("n", "<leader>k", function() vim.diagnostic.open_float() end,
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { desc = "Hover Documentation" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
-vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "[G]oto [D]eclaration" })
+-- gD handled by mini.pick (type definition)
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "format" })
 vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
 vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
@@ -54,5 +54,6 @@ vim.lsp.enable({
 	'clangd',
 	'tinymist',
 	'zls',
-	'dts-lsp',
+	'dts_lsp',
+	'buf_ls',
 })

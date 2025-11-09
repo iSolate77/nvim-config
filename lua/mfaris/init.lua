@@ -16,7 +16,21 @@ return {
     --     end,
     -- },
     -- Git related plugins
-    "tpope/vim-fugitive",
+    -- "tpope/vim-fugitive",
+    {
+        "NeogitOrg/neogit",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "sindrets/diffview.nvim", -- optional, but recommended
+        },
+        config = function()
+            require("neogit").setup({
+                integrations = { diffview = true },
+                use_default_keymaps = true,
+                auto_refresh = true,
+            })
+        end,
+    },
 
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
@@ -83,19 +97,19 @@ return {
             { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "undotree" },
         },
     },
-    {
-        "andweeb/presence.nvim",
-        config = function()
-            require("mfaris.plugin-config.presence")
-        end,
-    },
     -- {
-    --     "kylechui/nvim-surround",
-    --     version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --     "andweeb/presence.nvim",
     --     config = function()
-    --         require("nvim-surround").setup()
+    --         require("mfaris.plugin-config.presence")
     --     end,
     -- },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup()
+        end,
+    },
 
     "tpope/vim-repeat",
     -- "moll/vim-bbye",
@@ -122,7 +136,9 @@ return {
         "folke/flash.nvim",
         event = "VeryLazy",
         ---@type Flash.Config
-        opts = {},
+        opts = {
+            modes = { char = { enabled = false }, },
+        },
         -- stylua: ignore
         keys = {
             { "<leader>sf", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
@@ -134,7 +150,7 @@ return {
     },
     {
         "stevearc/oil.nvim",
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
         config = function()
             require("oil").setup({
                 columns = { "icon", "permissions" },
@@ -145,5 +161,22 @@ return {
             })
             vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { silent = true })
         end,
+    },
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     main = "ibl",
+    --     opts = {
+    --
+    --         scope = {
+    --             enabled = true,
+    --             show_start = false,
+    --         },
+    --     },
+    -- },
+    {
+        'chomosuke/typst-preview.nvim',
+        lazy = false, -- or ft = 'typst'
+        version = '1.*',
+        opts = {},    -- lazy.nvim will implicitly calls `setup {}`
     },
 }

@@ -27,8 +27,8 @@ return {
       })
 
       -- navigation
-      vim.keymap.set("n", "<leader>gn", function() gitsigns.next_hunk() end, { desc = "next hunk" })
-      vim.keymap.set("n", "<leader>gN", function() gitsigns.prev_hunk() end, { desc = "prev hunk" })
+      vim.keymap.set("n", "]h", function() gitsigns.next_hunk() end, { desc = "next hunk" })
+      vim.keymap.set("n", "[h", function() gitsigns.prev_hunk() end, { desc = "prev hunk" })
 
       -- Stage / reset current hunk
       vim.keymap.set("n", "<leader>gs", function() gitsigns.stage_hunk() end, { desc = "stage hunk" })
