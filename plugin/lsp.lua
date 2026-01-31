@@ -55,5 +55,7 @@ vim.lsp.enable({
 	'tinymist',
 	'zls',
 	'dts_lsp',
+	'ts_ls',
 	'buf_ls',
+	'ols',
 })
