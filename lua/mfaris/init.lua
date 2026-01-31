@@ -16,7 +16,21 @@ return {
     --     end,
     -- },
     -- Git related plugins
-    "tpope/vim-fugitive",
+    -- "tpope/vim-fugitive",
+    -- {
+    --     "NeogitOrg/neogit",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "sindrets/diffview.nvim", -- optional, but recommended
+    --     },
+    --     config = function()
+    --         require("neogit").setup({
+    --             integrations = { diffview = true },
+    --             use_default_keymaps = true,
+    --             auto_refresh = true,
+    --         })
+    --     end,
+    -- },
 
     -- Detect tabstop and shiftwidth automatically
     "tpope/vim-sleuth",
@@ -83,19 +97,19 @@ return {
             { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "undotree" },
         },
     },
-    {
-        "andweeb/presence.nvim",
-        config = function()
-            require("mfaris.plugin-config.presence")
-        end,
-    },
     -- {
-    --     "kylechui/nvim-surround",
-    --     version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    --     "andweeb/presence.nvim",
     --     config = function()
-    --         require("nvim-surround").setup()
+    --         require("mfaris.plugin-config.presence")
     --     end,
     -- },
+    {
+        "kylechui/nvim-surround",
+        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        config = function()
+            require("nvim-surround").setup()
+        end,
+    },
 
     "tpope/vim-repeat",
     -- "moll/vim-bbye",
@@ -122,7 +136,9 @@ return {
         "folke/flash.nvim",
         event = "VeryLazy",
         ---@type Flash.Config
-        opts = {},
+        opts = {
+            modes = { char = { enabled = false }, },
+        },
         -- stylua: ignore
         keys = {
             { "<leader>sf", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
@@ -134,7 +150,7 @@ return {
     },
     {
         "stevearc/oil.nvim",
-        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        dependencies = { { "nvim-mini/mini.icons", opts = {} } },
         config = function()
             require("oil").setup({
                 columns = { "icon", "permissions" },
@@ -145,5 +161,81 @@ return {
             })
             vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { silent = true })
         end,
+    },
+    -- {
+    --     "lukas-reineke/indent-blankline.nvim",
+    --     main = "ibl",
+    --     opts = {
+    --
+    --         scope = {
+    --             enabled = true,
+    --             show_start = false,
+    --         },
+    --     },
+    -- },
+    {
+        'chomosuke/typst-preview.nvim',
+        lazy = false, -- or ft = 'typst'
+        version = '1.*',
+        opts = {},    -- lazy.nvim will implicitly calls `setup {}`
+    },
+    {
+        "ThePrimeagen/99",
+        config = function()
+            local _99 = require("99")
+
+            -- For logging that is to a file if you wish to trace through requests
+            -- for reporting bugs, i would not rely on this, but instead the provided
+            -- logging mechanisms within 99.  This is for more debugging purposes
+            local cwd = vim.uv.cwd()
+            local basename = vim.fs.basename(cwd)
+            _99.setup({
+                provider = _99.Providers.ClaudeCodeProvider,
+                model = "claude-opus-4-5",
+                logger = {
+                    level = _99.DEBUG,
+                    path = "/tmp/" .. basename .. ".99.debug",
+                    print_on_error = true,
+                },
+
+                --- WARNING: if you change cwd then this is likely broken
+                --- ill likely fix this in a later change
+                ---
+                --- md_files is a list of files to look for and auto add based on the location
+                --- of the originating request.  That means if you are at /foo/bar/baz.lua
+                --- the system will automagically look for:
+                --- /foo/bar/AGENT.md
+                --- /foo/AGENT.md
+                --- assuming that /foo is project root (based on cwd)
+                md_files = {
+                    "AGENT.md",
+                },
+            })
+
+            -- Create your own short cuts for the different types of actions
+            vim.keymap.set("n", "<leader>of", function()
+                _99.fill_in_function_prompt()
+            end)
+            -- take extra note that i have visual selection only in v mode
+            -- technically whatever your last visual selection is, will be used
+            -- so i have this set to visual mode so i dont screw up and use an
+            -- old visual selection
+            --
+            -- likely ill add a mode check and assert on required visual mode
+            -- so just prepare for it now
+            vim.keymap.set("v", "<leader>ov", function()
+                _99.visual_prompt()
+            end)
+
+            --- if you have a request you dont want to make any changes, just cancel it
+            vim.keymap.set("v", "<leader>os", function()
+                _99.stop_all_requests()
+            end)
+        end,
+    },
+    {
+        -- "OXY2DEV/markview.nvim",
+        -- lazy = false,
+        'MeanderingProgrammer/render-markdown.nvim',
     },
 }
