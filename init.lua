@@ -34,6 +34,6 @@ require("lazy").setup("mfaris", {
 	},
 })
 
-require("mfaris.plugin-config.autocommands")
+-- require("mfaris.plugin-config.autocommands")
 require("settings.keymaps")
 require("settings.options")

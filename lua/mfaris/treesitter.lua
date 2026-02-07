@@ -6,7 +6,7 @@ return {
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
 			require("nvim-treesitter").install({
-				"c", "go", "rust", "python", "html", "javascript", "typescript", "lua", "zig", "proto"
+				"c", "go", "gomod", "gosum", "gowork", "rust", "python", "html", "javascript", "typescript", "lua", "zig", "proto"
 			})
 		end,
 	},

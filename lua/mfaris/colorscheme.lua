@@ -33,10 +33,8 @@ return {
 			-- 	},
 			-- 	-- disable_background = true,
 
-			vim.cmd("colorscheme catppuccin"),
-
-			ColorMyPencils(),
 		})
+		ColorMyPencils("catppuccin")
 
 		-- vim.cmd([[colorscheme tokyonight-storm]])
 	end,

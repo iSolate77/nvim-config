@@ -9,11 +9,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "man",
-	command = "nnoremap <buffer> q :quit<CR>",
-})
-
 -- Set wrap and spell in markdown and gitcommit
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = { "gitcommit", "markdown" },
@@ -40,5 +35,32 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 vim.api.nvim_create_autocmd("BufWritePost", {
 	callback = function()
 		vim.lsp.buf.format()
+	end,
+})
+
+local treesitter_group = vim.api.nvim_create_augroup("mfaris_treesitter_start", { clear = true })
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = treesitter_group,
+	callback = function(args)
+		if vim.b[args.buf].ts_highlight then
+			return
+		end
+
+		local ft = vim.bo[args.buf].filetype
+		if ft == "" then
+			return
+		end
+
+		local lang = vim.treesitter.language.get_lang(ft)
+		if not lang then
+			return
+		end
+
+		if not vim.treesitter.language.add(lang) then
+			return
+		end
+
+		vim.treesitter.start(args.buf, lang)
 	end,
 })
