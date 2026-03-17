@@ -40,3 +40,37 @@ keymap("n", "<C-u>", "<C-u>zz", opts)
 -- quick fix list
 keymap("n", "<leader>cn", "<CMD>cnext<CR>", opts)
 keymap("n", "<leader>cp", "<CMD>cprev<CR>", opts)
+
+-- In quickfix/location list windows:
+-- <CR> jumps and closes the list, <S-CR> jumps and keeps it open.
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "qf",
+  callback = function(args)
+    local qf_opts = { buffer = args.buf, silent = true, nowait = true }
+
+    local function jump(close_list)
+      local info = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1]
+      local is_loclist = info and info.loclist == 1
+
+      if is_loclist then
+        vim.cmd("ll")
+        if close_list then
+          vim.cmd("lclose")
+        end
+      else
+        vim.cmd("cc")
+        if close_list then
+          vim.cmd("cclose")
+        end
+      end
+    end
+
+    vim.keymap.set("n", "<CR>", function()
+      jump(true)
+    end, qf_opts)
+
+    vim.keymap.set("n", "<S-CR>", function()
+      jump(false)
+    end, qf_opts)
+  end,
+})

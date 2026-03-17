@@ -14,7 +14,7 @@ return {
     gh = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },
-    picker = { enabled = true, layout = { preset = "telescope" }, reverse = false, sources = { gh_pr = {} } },
+    picker = { enabled = true, layout = { preset = "telescope" }, reverse = false },
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
@@ -55,14 +55,7 @@ return {
     { "<leader>sM",  function() Snacks.picker.man() end,                                     desc = "Man Pages" },
     { "<leader>sp",  function() Snacks.picker.lazy() end,                                    desc = "Search for Plugin Spec" },
     { "<leader>sq",  function() Snacks.picker.qflist() end,                                  desc = "Quickfix List" },
-    -- LSP
-    -- { "gd",              function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
-    -- { "gD",              function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
-    { "gr",          function() Snacks.picker.lsp_references() end,                          nowait = true,                       desc = "References" },
-    { "gi",          function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
-    { "gD",          function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
-    { "<leader>ss",  function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
-    { "<leader>sS",  function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
+    -- LSP keymaps are set buffer-locally in lsp.lua on LspAttach.
     -- Other
     { "<leader>z",   function() Snacks.zen.zoom() end,                                       desc = "Toggle Zoom" },
     { "<leader>.",   function() Snacks.scratch() end,                                        desc = "Toggle Scratch Buffer" },
@@ -73,14 +66,28 @@ return {
     { "<leader>gb",  function() Snacks.gitbrowse() end,                                      desc = "Git Browse",                 mode = { "n", "v" } },
     { "<leader>nh",  function() Snacks.notifier.hide() end,                                  desc = "Dismiss All Notifications" },
     -- gh
-    { "<leader>ghp", function() Snacks.picker.gh_pr() end,                                   desc = "Github Pull Requests (open)" },
+    { "<leader>ghp", function() Snacks.picker.gh_pr({ state = "open" }) end,                 desc = "GitHub Pull Requests (open)" },
   },
   config = function(_, opts)
-    -- Fix for snacks gh module: Set Diff highlight foreground colors BEFORE setup
-    -- Catppuccin only defines bg colors for these groups, causing nil fg errors
-    vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#a6e3a1', bg = '#364433' })
-    vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#f38ba8', bg = '#4d2a2e' })
-    vim.api.nvim_set_hl(0, 'DiffChange', { fg = '#89b4fa', bg = '#2d3a5c' })
+    -- Ensure diff groups have an fg color for snacks.gh diff rendering.
+    -- Some colorschemes can leave these groups without fg, which breaks Snacks.util.blend.
+    local function ensure_diff_fg()
+      local fallback_fg = {
+        DiffAdd = "#a6e3a1",
+        DiffDelete = "#f38ba8",
+        DiffChange = "#89b4fa",
+      }
+      for group, fg in pairs(fallback_fg) do
+        local ok, hl = pcall(vim.api.nvim_get_hl, 0, { name = group })
+        if ok and (not hl or not hl.fg) then
+          vim.api.nvim_set_hl(0, group, { fg = fg, bg = hl and hl.bg or nil })
+        end
+      end
+    end
+    ensure_diff_fg()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = ensure_diff_fg,
+    })
 
     -- Setup snacks with the provided opts
     require("snacks").setup(opts)

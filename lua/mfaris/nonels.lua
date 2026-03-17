@@ -19,10 +19,10 @@ return {
 		vim.api.nvim_create_autocmd("LspAttach", {
 			callback = function(args)
 				local bufnr = args.buf
-				local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+				local clients = vim.lsp.get_clients({ bufnr = bufnr })
 				local has_any = false
 				for _, c in ipairs(clients) do
-					if c.supports_method("textDocument/formatting") then
+					if c:supports_method("textDocument/formatting") then
 						has_any = true
 						break
 					end
@@ -62,7 +62,7 @@ return {
 		if prettierd then
 			table.insert(sources, 1, prettierd.with({
 				extra_filetypes = { "toml", "tmpl", "go.tmpl" },
-				extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+				extra_args = { "--single-quote", "--jsx-single-quote" },
 			}))
 		end
 
